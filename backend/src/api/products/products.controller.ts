@@ -1,21 +1,27 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { product as ProductType, Prisma } from '@prisma/client';
+import { product, Prisma } from '@prisma/client';
 import { ProductsService } from './products.service';
 
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  @Get()
+  async getAllProducts(): Promise<product[]> {
+    const products = await this.productsService.getAllProducts();
+    return products;
+  }
+
   @Get(':id')
   async getProduct(
     @Param('id') prodId: Prisma.productWhereUniqueInput,
-  ): Promise<ProductType> {
+  ): Promise<product> {
     const product = await this.productsService.getProduct(prodId);
     return product;
   }
 
   @Post()
-  createProduct(@Body() product: ProductType) {}
+  createProduct(@Body() product: product) {}
 
   // @Get()
   // findAll(@Query() query: ListAllEntities) {

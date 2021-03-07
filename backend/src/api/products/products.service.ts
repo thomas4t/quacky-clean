@@ -6,6 +6,13 @@ import { product as Product, Prisma } from '@prisma/client';
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
+  async getAllProducts(): Promise<Product[]> {
+    return await this.prisma.product.findMany();
+    // return this.prisma.product.findUnique({
+    //   where: productWhereUniqueInput,
+    // });
+  }
+
   async getProduct(
     productWhereUniqueInput: Prisma.productWhereUniqueInput,
   ): Promise<Product | null> {
