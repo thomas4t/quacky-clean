@@ -1,17 +1,8 @@
-import React from "react";
-import DuckCounter from "./components/DuckCounter";
+import ResponsiveLayout from "./components/UI/ResponsiveLayout";
+import AppRoutes from "./core/AppRoutes";
 
 function App() {
-  const [showDucks, setShowDucks] = React.useState(true);
-  return (
-    <div className="App">
-      <p>The app root!</p>
-      {showDucks ? <DuckCounter /> : <span>nothin to see here</span>}
-      <button onClick={() => setShowDucks(!showDucks)}>
-        Reset duck state!
-      </button>
-    </div>
-  );
+  return <AppRoutes />;
 }
 
 export default App;

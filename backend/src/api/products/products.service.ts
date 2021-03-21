@@ -8,9 +8,6 @@ export class ProductsService {
 
   async getAllProducts(): Promise<Product[]> {
     return await this.prisma.product.findMany();
-    // return this.prisma.product.findUnique({
-    //   where: productWhereUniqueInput,
-    // });
   }
 
   async getProduct(
@@ -19,5 +16,11 @@ export class ProductsService {
     return this.prisma.product.findUnique({
       where: productWhereUniqueInput,
     });
+  }
+
+  async getProductsByCategory(categoryID: number){
+    return await this.prisma.product.findMany({
+      where: {ID_Category:categoryID}
+    })
   }
 }

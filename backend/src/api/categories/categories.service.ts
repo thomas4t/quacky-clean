@@ -12,4 +12,10 @@ export class CategoriesService {
     //   where: productWhereUniqueInput,
     // });
   }
+
+  async getCategory(id: number): Promise<category> {
+    return await this.prisma.category.findUnique({
+      where: { ID_Category: id },
+    });
+  }
 }

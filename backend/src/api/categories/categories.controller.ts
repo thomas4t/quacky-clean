@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { category } from '@prisma/client';
 import { CategoriesService } from './categories.service';
 
@@ -10,5 +10,11 @@ export class CategoriesController {
   async getAllCategories(): Promise<category[]> {
     const products = await this.categoriesService.getAllCategories();
     return products;
+  }
+
+  @Get(':id')
+  async getCategory(@Param('id') prodId: number): Promise<category> {
+    const product = await this.categoriesService.getCategory(prodId);
+    return product;
   }
 }

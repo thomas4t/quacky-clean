@@ -13,11 +13,17 @@ export class ProductsController {
   }
 
   @Get(':id')
-  async getProduct(
-    @Param('id') prodId: Prisma.productWhereUniqueInput,
-  ): Promise<product> {
-    const product = await this.productsService.getProduct(prodId);
+  async getProduct(@Param('id') prodId: string): Promise<product> {
+    const product = await this.productsService.getProduct({
+      ID_Product: Number(prodId),
+    });
     return product;
+  }
+
+  @Get('/category/:id')
+  async getProductsByCategory(@Param('id') catId: string): Promise<product[]> {
+    const products = await this.productsService.getProductsByCategory(Number(catId));
+    return products;
   }
 
   @Post()
