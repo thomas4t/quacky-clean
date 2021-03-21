@@ -40,7 +40,7 @@ export function SystemPageLink(props: {
   const { page, extra = "" } = props;
 
   const resolvePageUrl = () => {
-    if (page == "homepage") return "/";
+    if (page === "homepage") return "/";
 
     return `/${page}/${extra}`;
   };
